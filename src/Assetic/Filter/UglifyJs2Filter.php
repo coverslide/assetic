@@ -28,6 +28,7 @@ class UglifyJs2Filter extends BaseNodeFilter
     private $beautify;
     private $mangle;
     private $screwIe8;
+    private $asciiOnly;
     private $comments;
     private $wrap;
     private $defines;
@@ -56,6 +57,11 @@ class UglifyJs2Filter extends BaseNodeFilter
     public function setScrewIe8($screwIe8)
     {
         $this->screwIe8 = $screwIe8;
+    }
+    
+    public function setAsciiOnly($asciiOnly)
+    {
+        $this->asciiOnly = $asciiOnly;
     }
 
     public function setComments($comments)
@@ -99,6 +105,10 @@ class UglifyJs2Filter extends BaseNodeFilter
 
         if ($this->screwIe8) {
             $pb->add('--screw-ie8');
+        }
+        
+        if ($this->asciiOnly) {
+            $pb->add('--ascii-only');
         }
 
         if ($this->comments) {
